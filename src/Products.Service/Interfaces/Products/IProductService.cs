@@ -16,6 +16,9 @@ namespace Products.Service.Interfaces.Products
         public Task<IList<Product>> OrderByName();
         public Task<IList<Product>> OrderByDesendingName();
 
+        public Task<IList<Product>> OrderByType();
+        public Task<IList<Product>> OrderByDesendingType();
+
         public Task<IList<Product>> GetAllAsync();
         public Task<IList<Product>> SearchAsync(string searchTerm);
         public Task<Product> GetAsync();

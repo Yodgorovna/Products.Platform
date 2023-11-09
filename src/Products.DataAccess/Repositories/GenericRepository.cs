@@ -16,10 +16,8 @@ namespace Products.DataAccess.Repositories
         public async Task<TEntity?> LastOrDefaultAsync(Expression<Func<TEntity, bool>> expression)
             => await _dbSet.LastOrDefaultAsync(expression);
 
-        public Task<IEnumerable<TEntity>> OrderBy(Expression<Func<TEntity, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
+        public IQueryable<TEntity> OrderBy(Expression<Func<TEntity, string>> expression)
+            => _dbSet.OrderBy(expression);
 
         public IQueryable<TEntity> OrderByDesending(Expression<Func<TEntity, string>> expression)
            => _dbSet.OrderByDescending(expression);
