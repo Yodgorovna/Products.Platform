@@ -1,4 +1,5 @@
 using Products.Service.Mapper;
+using Products.WebApi.Configurations.Extensions;
 using Products.WebApi.Configurations.LayerConfigurations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.ApplyMigrations();
 
 app.UseHttpsRedirection();
 
