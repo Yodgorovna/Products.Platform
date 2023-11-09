@@ -70,26 +70,26 @@ namespace Products.Service.Services.Products
 
         public async Task<IList<Product>> OrderByDesendingType()
         {
-            return await _dbRepos.Product.OrderByDesending(p => p.Name).ToListAsync();
+            return await _dbRepos.Product.OrderByDesending(p => p.Type).ToListAsync();
         }
 
         public async Task<IList<Product>> OrderByType()
         {
-            return await _dbRepos.Product.OrderBy(p => p.Name).ToListAsync();
+            return await _dbRepos.Product.OrderBy(p => p.Type).ToListAsync();
         }
 
         public async Task<IList<Product>> SearchAsync(string searchTerm)
         {
-          var results = await _dbRepos.Product
-      .Where(p =>
-          EF.Functions.Like(p.Id.ToString(), $"%{searchTerm}%") ||
-          EF.Functions.Like(p.Name, $"%{searchTerm}%") ||
-          EF.Functions.Like(p.Type, $"%{searchTerm}%") ||
-          EF.Functions.Like(p.Price.ToString(), $"%{searchTerm}%") ||
-          EF.Functions.Like(p.Brand, $"%{searchTerm}%") ||
-          (p.Created_At != null && EF.Functions.Like(p.Created_At.ToString(), $"%{searchTerm}%")) ||
-          (p.Updated_At != null && EF.Functions.Like(p.Updated_At.ToString(), $"%{searchTerm}%")))
-      .ToListAsync();
+            var results = await _dbRepos.Product
+        .Where(p =>
+            EF.Functions.Like(p.Id.ToString(), $"%{searchTerm}%") ||
+            EF.Functions.Like(p.Name, $"%{searchTerm}%") ||
+            EF.Functions.Like(p.Type, $"%{searchTerm}%") ||
+            EF.Functions.Like(p.Price.ToString(), $"%{searchTerm}%") ||
+            EF.Functions.Like(p.Brand, $"%{searchTerm}%") ||
+            (p.Created_At != null && EF.Functions.Like(p.Created_At.ToString(), $"%{searchTerm}%")) ||
+            (p.Updated_At != null && EF.Functions.Like(p.Updated_At.ToString(), $"%{searchTerm}%")))
+        .ToListAsync();
 
             return results;
         }
@@ -106,6 +106,56 @@ namespace Products.Service.Services.Products
             var a = _dbRepos.SaveChanges();
 
             return a > 0;
+        }
+
+        public async Task<IList<Product>> OrderByBrand()
+        {
+            return await _dbRepos.Product.OrderBy(p => p.Brand).ToListAsync();
+        }
+
+        public async Task<IList<Product>> OrderByDesendingBrand()
+        {
+            return await _dbRepos.Product.OrderByDesending(p => p.Brand).ToListAsync();
+        }
+
+        public async Task<IList<Product>> OrderById()
+        {
+            return await _dbRepos.Product.OrderBy(p => p.Id.ToString()).ToListAsync();
+        }
+
+        public async Task<IList<Product>> OrderByDesendingId()
+        {
+            return await _dbRepos.Product.OrderByDesending(p => p.Id.ToString()).ToListAsync();
+        }
+
+        public async Task<IList<Product>> OrderByPrice()
+        {
+            return await _dbRepos.Product.OrderBy(p => p.Price.ToString()).ToListAsync();
+        }
+
+        public async Task<IList<Product>> OrderByDesendingPrice()
+        {
+            return await _dbRepos.Product.OrderByDesending(p => p.Price.ToString()).ToListAsync();
+        }
+
+        public async Task<IList<Product>> OrderByCreatedAt()
+        {
+            return await _dbRepos.Product.OrderByDate(p => p.Created_At).ToListAsync();
+        }
+
+        public async Task<IList<Product>> OrderByDesendingCreatedAt()
+        {
+            return await _dbRepos.Product.OrderByDesendingDate(p => p.Created_At).ToListAsync();
+        }
+
+        public async Task<IList<Product>> OrderByUpdatedAt()
+        {
+            return await _dbRepos.Product.OrderByDesendingDate(p => p.Created_At).ToListAsync();
+        }
+
+        public async Task<IList<Product>> OrderByDesendingUpdatedAt()
+        {
+            return await _dbRepos.Product.OrderByDesendingDate(p => p.Updated_At).ToListAsync();
         }
     }
 }

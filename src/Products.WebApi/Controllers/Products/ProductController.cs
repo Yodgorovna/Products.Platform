@@ -38,15 +38,48 @@ namespace Products.WebApi.Controllers.Products
 
         [HttpGet("orderby-name")]
         public async Task<IActionResult> OrderByName()
-         => Ok(await _service.OrderByName());
+            => Ok(await _service.OrderByName());
 
         [HttpGet("orderbydesending-type")]
         public async Task<IActionResult> OrderByDesendingType()
-     => Ok(await _service.OrderByDesendingType());
+            => Ok(await _service.OrderByDesendingType());
 
         [HttpGet("orderby-type")]
         public async Task<IActionResult> OrderByType()
-         => Ok(await _service.OrderByType());
+            => Ok(await _service.OrderByType());
+
+
+        [HttpGet("orderbydesending-brand")]
+        public async Task<IActionResult> OrderByDesendingBrand()
+            => Ok(await _service.OrderByDesendingBrand());
+
+        [HttpGet("orderby-brand")]
+        public async Task<IActionResult> OrderByBrand()
+            => Ok(await _service.OrderByBrand());
+
+        [HttpGet("orderbydesending-id")]
+        public async Task<IActionResult> OrderByDesendingId()
+            => Ok(await _service.OrderByDesendingId());
+
+        [HttpGet("orderby-id")]
+        public async Task<IActionResult> OrderById()
+            => Ok(await _service.OrderById());
+
+        [HttpGet("orderbydesending-price")]
+        public async Task<IActionResult> OrderByDesendingPrice()
+            => Ok(await _service.OrderByDesendingPrice());
+
+        [HttpGet("orderby-price")]
+        public async Task<IActionResult> OrderByPrice()
+            => Ok(await _service.OrderByPrice());
+
+        [HttpGet("orderbydesending-createdat")]
+        public async Task<IActionResult> OrderByDesendingCreatedAt()
+            => Ok(await _service.OrderByDesendingCreatedAt());
+
+        [HttpGet("orderby-updatedat")]
+        public async Task<IActionResult> OrderByUpdatedAt()
+            => Ok(await _service.OrderByUpdatedAt());
 
     }
 }
