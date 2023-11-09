@@ -29,8 +29,12 @@ namespace Products.WebApi.Controllers.Products
         public async Task<IActionResult> UpdateAsync(ProductDto dto, Guid productId)
             => Ok (await _service.Update(productId, dto));
 
-        [HttpGet("searchTerm")]
+        [HttpGet("{searchTerm}")]
         public async Task<IActionResult> SearchAsync (string searchTerm)
             => Ok (await _service.SearchAsync(searchTerm));
+
+        [HttpGet("orderbydesending-name")]
+        public async Task<IActionResult> OrderByDesendingName()
+            => Ok (await _service.OrderByDesendingName());
     }
 }
