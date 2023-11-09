@@ -13,7 +13,7 @@ namespace Products.DataAccess.Interfaces
         public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression);
         public Task<TEntity?> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> expression);
         public Task<TEntity?> LastOrDefaultAsync(Expression<Func<TEntity, bool>> expression);
-        public Task<IEnumerable<TEntity>> OrderBy(Expression<Func<TEntity, bool>> expression);
+        public IQueryable<TEntity>OrderBy(Expression<Func<TEntity, string>> expression);
         public IQueryable<TEntity> OrderByDesending(Expression<Func<TEntity, string>> expression);
     }
 }

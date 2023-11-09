@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Products.DataAccess.Interfaces;
-using AutoMapper;
 using Products.Domain.Entities.Products;
 using Products.Service.Dtos.Products;
 using Products.Service.Helper;
@@ -60,26 +60,36 @@ namespace Products.Service.Services.Products
 
         public async Task<IList<Product>> OrderByDesendingName()
         {
-            return await _dbRepos.Product.OrderByDesending(p => p.Name ).ToListAsync();   
+            return await _dbRepos.Product.OrderByDesending(p => p.Name).ToListAsync();
         }
 
-        public Task<IList<Product>> OrderByName()
+        public async Task<IList<Product>> OrderByName()
         {
-            throw new NotImplementedException();
+            return await _dbRepos.Product.OrderBy(p => p.Name).ToListAsync();
+        }
+
+        public async Task<IList<Product>> OrderByDesendingType()
+        {
+            return await _dbRepos.Product.OrderByDesending(p => p.Name).ToListAsync();
+        }
+
+        public async Task<IList<Product>> OrderByType()
+        {
+            return await _dbRepos.Product.OrderBy(p => p.Name).ToListAsync();
         }
 
         public async Task<IList<Product>> SearchAsync(string searchTerm)
         {
-            var results = await _dbRepos.Product
-    .Where(p =>
-        EF.Functions.Like(p.Id.ToString(), $"%{searchTerm}%") ||
-        EF.Functions.Like(p.Name, $"%{searchTerm}%") ||
-        EF.Functions.Like(p.Type, $"%{searchTerm}%") ||
-        EF.Functions.Like(p.Price.ToString(), $"%{searchTerm}%") ||
-        EF.Functions.Like(p.Brand, $"%{searchTerm}%") ||
-        (p.Created_At != null && EF.Functions.Like(p.Created_At.ToString(), $"%{searchTerm}%")) ||
-        (p.Updated_At != null && EF.Functions.Like(p.Updated_At.ToString(), $"%{searchTerm}%")))
-    .ToListAsync();
+          var results = await _dbRepos.Product
+      .Where(p =>
+          EF.Functions.Like(p.Id.ToString(), $"%{searchTerm}%") ||
+          EF.Functions.Like(p.Name, $"%{searchTerm}%") ||
+          EF.Functions.Like(p.Type, $"%{searchTerm}%") ||
+          EF.Functions.Like(p.Price.ToString(), $"%{searchTerm}%") ||
+          EF.Functions.Like(p.Brand, $"%{searchTerm}%") ||
+          (p.Created_At != null && EF.Functions.Like(p.Created_At.ToString(), $"%{searchTerm}%")) ||
+          (p.Updated_At != null && EF.Functions.Like(p.Updated_At.ToString(), $"%{searchTerm}%")))
+      .ToListAsync();
 
             return results;
         }
