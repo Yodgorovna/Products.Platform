@@ -21,6 +21,13 @@ namespace Products.DataAccess.Repositories
 
         public IQueryable<TEntity> OrderByDesending(Expression<Func<TEntity, string>> expression)
            => _dbSet.OrderByDescending(expression);
+     
+        public IQueryable<TEntity> OrderByDate(Expression<Func<TEntity, DateTime>> expression)
+           => _dbSet.OrderBy(expression);
+
+        public IQueryable<TEntity> OrderByDesendingDate(Expression<Func<TEntity, DateTime>> expression)
+           => _dbSet.OrderByDescending(expression);
+
         public IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression)
            => _dbSet.Where(expression);
     }

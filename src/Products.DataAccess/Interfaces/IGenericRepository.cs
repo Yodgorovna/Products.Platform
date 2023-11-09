@@ -15,5 +15,7 @@ namespace Products.DataAccess.Interfaces
         public Task<TEntity?> LastOrDefaultAsync(Expression<Func<TEntity, bool>> expression);
         public IQueryable<TEntity>OrderBy(Expression<Func<TEntity, string>> expression);
         public IQueryable<TEntity> OrderByDesending(Expression<Func<TEntity, string>> expression);
+        public IQueryable<TEntity> OrderByDate(Expression<Func<TEntity, DateTime>> expression);
+        public IQueryable<TEntity> OrderByDesendingDate(Expression<Func<TEntity, DateTime>> expression);
     }
 }
