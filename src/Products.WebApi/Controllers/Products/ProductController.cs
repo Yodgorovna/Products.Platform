@@ -73,9 +73,18 @@ namespace Products.WebApi.Controllers.Products
         public async Task<IActionResult> OrderByPrice()
             => Ok(await _service.OrderByPrice());
 
+
+        [HttpGet("orderby-createdat")]
+        public async Task<IActionResult> OrderByCreatedAt()
+           => Ok(await _service.OrderByCreatedAt());
+
         [HttpGet("orderbydesending-createdat")]
         public async Task<IActionResult> OrderByDesendingCreatedAt()
             => Ok(await _service.OrderByDesendingCreatedAt());
+
+        [HttpGet("orderbydesending-updatedat")]
+        public async Task<IActionResult> OrderByDesendingUpdatedAt()
+          => Ok(await _service.OrderByDesendingUpdatedAt());
 
         [HttpGet("orderby-updatedat")]
         public async Task<IActionResult> OrderByUpdatedAt()
