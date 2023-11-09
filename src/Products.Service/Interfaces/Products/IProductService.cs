@@ -36,7 +36,7 @@ namespace Products.Service.Interfaces.Products
 
         public Task<IList<Product>> GetAllAsync();
         public Task<IList<Product>> SearchAsync(string searchTerm);
-        public Task<Product> GetAsync();
+        public Task<Product?> GetByIdAsync(Guid getbyid);
         public Task<bool> DeleteAsync(Guid productId);
     }
 }

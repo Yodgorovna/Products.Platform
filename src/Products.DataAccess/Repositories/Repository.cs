@@ -28,12 +28,12 @@ namespace Products.DataAccess.Repositories
 
         public IQueryable<TEntity> GetAll() => _dbSet;
 
-        public async Task<TEntity?> GetByIdAsync(Guid id)
+        public TEntity GetByIdAsync(Guid id)
         {
             TEntity entity = this._dbSet.Find(id)!;
             if (entity != null)
             {
-                return  entity;
+                return entity;
             }
             return null;
 

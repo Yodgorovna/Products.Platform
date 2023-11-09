@@ -21,15 +21,6 @@ namespace Products.Service.Services.Products
         }
         public async Task<bool> CreateAsync(ProductDto dto)
         {
-            //Product product = new Product
-            //{
-            //    Brand = dto.Brand,
-            //    Name = dto.Name,
-            //    Price = dto.Price,
-            //    Type = dto.Type,
-
-            //};
-
             Product product = _mapper.Map<Product>(dto);
             product.Created_At = TimeHelper.GetDateTime();
             product.Updated_At = TimeHelper.GetDateTime();
@@ -49,11 +40,6 @@ namespace Products.Service.Services.Products
         }
 
         public Task<IList<Product>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Product> GetAsync()
         {
             throw new NotImplementedException();
         }
@@ -97,10 +83,7 @@ namespace Products.Service.Services.Products
         public async Task<bool> Update(Guid productId, ProductDto dto)
         {
             Product product = _mapper.Map<Product>(dto);
-            product.Created_At = TimeHelper.GetDateTime();
             product.Updated_At = TimeHelper.GetDateTime();
-
-            await _dbRepos.Product.Add(product);
 
             await _dbRepos.Product.Update(productId, product);
             var a = _dbRepos.SaveChanges();
@@ -156,6 +139,11 @@ namespace Products.Service.Services.Products
         public async Task<IList<Product>> OrderByDesendingUpdatedAt()
         {
             return await _dbRepos.Product.OrderByDesendingDate(p => p.Updated_At).ToListAsync();
+        }
+
+        public async Task<Product?> GetByIdAsync(Guid getbyid)
+        {
+           return  _dbRepos.Product.GetByIdAsync(getbyid);
         }
     }
 }
