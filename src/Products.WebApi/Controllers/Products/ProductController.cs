@@ -28,7 +28,11 @@ namespace Products.WebApi.Controllers.Products
         public async Task<IActionResult> UpdateAsync(ProductDto dto, Guid productId)
             => Ok(await _service.Update(productId, dto));
 
-        [HttpGet("{searchTerm}")]
+        [HttpGet("{getbyid}")]
+        public async Task<IActionResult> GetByIdAsync(Guid getbyid)
+            => Ok(await _service.GetByIdAsync(getbyid));
+
+        [HttpGet("searchTerm")]
         public async Task<IActionResult> SearchAsync(string searchTerm)
             => Ok(await _service.SearchAsync(searchTerm));
 
@@ -47,7 +51,6 @@ namespace Products.WebApi.Controllers.Products
         [HttpGet("orderby-type")]
         public async Task<IActionResult> OrderByType()
             => Ok(await _service.OrderByType());
-
 
         [HttpGet("orderbydesending-brand")]
         public async Task<IActionResult> OrderByDesendingBrand()
@@ -89,6 +92,5 @@ namespace Products.WebApi.Controllers.Products
         [HttpGet("orderby-updatedat")]
         public async Task<IActionResult> OrderByUpdatedAt()
             => Ok(await _service.OrderByUpdatedAt());
-
     }
 }

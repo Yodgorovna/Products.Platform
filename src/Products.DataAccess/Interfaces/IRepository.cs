@@ -13,6 +13,6 @@ namespace Products.DataAccess.Interfaces
         public Task Add(TEntity entity);
         public Task Update(Guid id, TEntity entity);
         public Task Delete(Guid id);
-        public Task<TEntity?> GetByIdAsync(Guid id);
+        public TEntity GetByIdAsync(Guid id);
     }
 }
