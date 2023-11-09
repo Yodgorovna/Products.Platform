@@ -1,0 +1,8 @@
+
+FROM postgres:latest
+ENV POSTGRES_USER postgres_adminka
+ENV POSTGRES_PASSWORD 12qw!@QW
+ENV POSTGRES_DB product-db
+#COPY ./apps/postgres/init.sql /docker-entrypoint-initdb.d/
+#RUN dotnet ef migrations add InitialCreate
+#RUN dotnet ef database update
