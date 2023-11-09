@@ -58,9 +58,9 @@ namespace Products.Service.Services.Products
             throw new NotImplementedException();
         }
 
-        public Task<IList<Product>> OrderByDesendingName()
+        public async Task<IList<Product>> OrderByDesendingName()
         {
-            throw new NotImplementedException();
+            return await _dbRepos.Product.OrderByDesending(p => p.Name ).ToListAsync();   
         }
 
         public Task<IList<Product>> OrderByName()

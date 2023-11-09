@@ -14,11 +14,5 @@ namespace Products.DataAccess.Repositories.Products
     {
         public ProductRepository(AppDbContext appDb) : base(appDb)
         { }
-
-        public IQueryable<Product> OrderBy(Expression<Func<Product, bool>> expression)
-            =>  _dbSet.OrderBy(expression);
-        
-        public IQueryable<Product> OrderByDesending(Expression<Func<Product, bool>> expression) 
-            => _dbSet.OrderByDescending(expression);
     }
 }
