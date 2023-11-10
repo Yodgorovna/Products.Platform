@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Products.DataAccess.DbContexts;
 using Products.DataAccess.Interfaces;
+using Products.Domain.Common.Utils;
 
 namespace Products.DataAccess.Repositories
 {
@@ -26,7 +27,14 @@ namespace Products.DataAccess.Repositories
             }
         }
 
-        public IQueryable<TEntity> GetAll() => _dbSet;
+        public IQueryable<TEntity> GetAll(PaginationParams @params)
+        {
+            var products = _dbSet
+            .Skip((@params.PageNumber - 1) * @params.PageSize)
+            .Take(@params.PageSize);
+     
+            return products;
+        }
 
         public TEntity GetByIdAsync(Guid id)
         {
