@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Products.Domain.Common.Utils;
 using Products.Service.Dtos.Products;
 using Products.Service.Interfaces.Products;
 
@@ -9,11 +10,16 @@ namespace Products.WebApi.Controllers.Products
     public class ProductController : ControllerBase
     {
         private IProductService _service;
-
+        private int maxPage = 2;
         public ProductController(IProductService service)
         {
             this._service = service;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllAsync([FromQuery] int page = 1)
+            => Ok(await _service.GetAllAsync(new PaginationParams(page, maxPage)));
+
 
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromForm] ProductDto dto)

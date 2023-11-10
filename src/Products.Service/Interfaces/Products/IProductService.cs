@@ -1,4 +1,5 @@
-﻿using Products.Domain.Entities.Products;
+﻿using Products.Domain.Common.Utils;
+using Products.Domain.Entities.Products;
 using Products.Service.Dtos.Products;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace Products.Service.Interfaces.Products
         public Task<IList<Product>> OrderByUpdatedAt();
         public Task<IList<Product>> OrderByDesendingUpdatedAt();
 
-        public Task<IList<Product>> GetAllAsync();
+        public Task<IList<Product>> GetAllAsync(PaginationParams @params);
         public Task<IList<Product>> SearchAsync(string searchTerm);
         public Task<Product?> GetByIdAsync(Guid getbyid);
         public Task<bool> DeleteAsync(Guid productId);

@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Products.DataAccess.Interfaces;
+using Products.Domain.Common.Utils;
 using Products.Domain.Entities.Products;
 using Products.Service.Dtos.Products;
 using Products.Service.Helper;
+using Products.Service.Interfaces;
 using Products.Service.Interfaces.Products;
 
 
@@ -13,11 +15,13 @@ namespace Products.Service.Services.Products
     {
         private IUnitOfWork _dbRepos;
         private IMapper _mapper;
+        private IPagination _paginator;
 
-        public ProductService(IUnitOfWork unitOf, IMapper mapper)
+        public ProductService(IUnitOfWork unitOf, IMapper mapper, IPagination pagination)
         {
             this._dbRepos = unitOf ?? throw new ArgumentNullException(nameof(unitOf));
             _mapper = mapper;
+            this._paginator = pagination;
         }
         public async Task<bool> CreateAsync(ProductDto dto)
         {
@@ -144,6 +148,16 @@ namespace Products.Service.Services.Products
         public async Task<Product?> GetByIdAsync(Guid getbyid)
         {
            return  _dbRepos.Product.GetByIdAsync(getbyid);
+        }
+
+        public async Task<IList<Product>> GetAllAsync(PaginationParams @params)
+        {
+            var res =  await _dbRepos.Product.GetAll(@params).ToListAsync();
+
+            var DBCount = await _dbRepos.Product.CountAsync();
+            _paginator.Paginate(DBCount, @params);
+
+            return res;
         }
     }
 }
