@@ -10,7 +10,7 @@ namespace Products.WebApi.Controllers.Products
     public class ProductController : ControllerBase
     {
         private IProductService _service;
-        private int maxPage = 2;
+        private int maxPage = 25;
         public ProductController(IProductService service)
         {
             this._service = service;
